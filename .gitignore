@@ -1,0 +1,23 @@
+# Generated assets
+narrations/
+mixed/
+videos/
+temp/
+images/
+
+# Secrets & tokens
+client_secrets.json
+*.pickle
+.env
+
+# Caches
+localization_cache.json
+__pycache__/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Virtual environments
+.venv/
+venv/
