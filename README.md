@@ -140,3 +140,20 @@ story to video, youtube automation, ai youtube channel, faceless youtube, audiob
 ## License
 
 MIT
+
+
+## ElevenLabs TTS support
+
+Generate mp3 narration with ElevenLabs:
+
+```bash
+export ELEVENLABS_API_KEY=your_key
+python generate_tts_elevenlabs.py stories/your_story.md
+```
+
+Batch mode:
+
+```bash
+python generate_tts_elevenlabs.py --pattern "*.md"
+```
+
