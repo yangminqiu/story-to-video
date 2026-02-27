@@ -1,0 +1,9 @@
+services:
+  story-to-video:
+    build: .
+    image: story-to-video:latest
+    env_file:
+      - .env
+    volumes:
+      - ./stories:/app/stories
+      - ./output:/app/output

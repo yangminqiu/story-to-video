@@ -14,6 +14,21 @@ Whether you're building a faceless YouTube channel, a children's audiobook serie
 ![Demo](docs/demo.gif)
 -->
 
+## Docker quick start
+
+```bash
+cp .env.example .env
+# edit .env with your API keys
+docker compose up --build
+```
+
+Run one-off command:
+
+```bash
+docker compose run --rm story-to-video python pipeline.py --help
+```
+
+
 ## Use Cases
 
 - **Faceless YouTube channels** — Automate narrated story content without showing your face or recording your voice
