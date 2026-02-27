@@ -140,3 +140,15 @@ story to video, youtube automation, ai youtube channel, faceless youtube, audiob
 ## License
 
 MIT
+
+
+## Automatic subtitle / SRT generation
+
+Generate `.srt` from your script text (and optional audio duration):
+
+```bash
+python generate_srt.py   --text stories/your_script.txt   --audio output/voice.mp3   --out output/subtitles.srt
+```
+
+If `--audio` is omitted, the script estimates duration automatically.
+
