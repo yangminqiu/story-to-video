@@ -74,6 +74,21 @@ cp ~/Music/ambient.m4a background/background.m4a
 cp ~/Art/cover.png images/格林童话-07-小红帽.png
 ```
 
+### Generate YouTube Shorts (9:16)
+
+```bash
+# Split a long video into <=60s vertical shorts
+python generate_shorts.py \
+  --input videos/格林童话-07-小红帽.mp4 \
+  --output-dir output/shorts \
+  --max-duration 60
+```
+
+Tips:
+- Requires `ffmpeg` and `ffprobe`
+- Default output resolution is `1080x1920`
+- Use `--clips N` to limit number of generated shorts
+
 ## Example Output
 
 > Once you run the pipeline on a story, you get three artifacts:
@@ -99,6 +114,7 @@ story-to-video/
 ├── generate_tts_gemini.py    # Alternative TTS via Google Gemini
 ├── upload_youtube.py         # YouTube upload with OAuth + scheduling
 ├── localize_youtube.py       # Auto-translate YouTube metadata via Gemini
+├── generate_shorts.py        # Generate 9:16 YouTube Shorts from long videos
 ├── stories/                  # Your story markdown files (input)
 ├── background/               # Background music file (optional)
 ├── images/                   # Cover art (auto-generated or manual)
