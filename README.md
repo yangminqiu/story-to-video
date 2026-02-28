@@ -74,6 +74,32 @@ cp ~/Music/ambient.m4a background/background.m4a
 cp ~/Art/cover.png images/格林童话-07-小红帽.png
 ```
 
+## Troubleshooting
+
+### `OPENAI_API_KEY environment variable not set`
+- Make sure `.env` exists and includes `OPENAI_API_KEY`
+- Load env vars before running:
+
+```bash
+export $(cat .env | xargs)
+```
+
+### `set GEMINI_API_KEY or GOOGLE_API_KEY`
+- Set either `GEMINI_API_KEY` or `GOOGLE_API_KEY` in `.env`
+
+### `ffmpeg` / `ffprobe` not found
+- Install ffmpeg and verify:
+
+```bash
+ffmpeg -version
+ffprobe -version
+```
+
+### YouTube upload auth error (`client_secrets.json` not found)
+- Place Google OAuth credentials file at project root:
+  - `client_secrets.json`
+- Re-run upload/localization script to generate `youtube_token.pickle`
+
 ## Example Output
 
 > Once you run the pipeline on a story, you get three artifacts:
