@@ -5,40 +5,80 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI获客工作室 | Automation & Content</title>
   <style>
-    :root{--bg:#0b1020;--card:#121a33;--line:#24305f;--text:#ecf1ff;--muted:#aeb9e8;--brand:#6d8bff;--ok:#8eea7a}
-    *{box-sizing:border-box} body{margin:0;background:radial-gradient(1200px 500px at 20% -10%,#24305f55,transparent),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-    .wrap{max-width:1060px;margin:0 auto;padding:28px 20px 56px}
-    .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-    .lang button{background:#18224a;border:1px solid var(--line);color:#d7e0ff;padding:8px 10px;border-radius:8px;cursor:pointer;margin-left:6px}
-    .lang button.active{background:var(--brand);border-color:var(--brand);color:#fff}
-    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
-    .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
-    h1{font-size:40px;line-height:1.15;margin:0 0 10px} h2{margin:0 0 10px;font-size:24px} h3{margin:0 0 8px;font-size:18px}
-    p{margin:8px 0;color:var(--muted);line-height:1.7}
-    .btn{display:inline-block;background:var(--brand);color:#fff;text-decoration:none;padding:11px 14px;border-radius:10px;margin-right:10px;border:none;cursor:pointer}
-    .mutebtn{display:inline-block;border:1px solid var(--line);color:var(--text);text-decoration:none;padding:10px 14px;border-radius:10px}
+    :root{
+      --bg:#f4f7ff;
+      --text:#15213a;
+      --muted:#4b5d86;
+      --brand:#4f6df5;
+      --brand2:#8a5cff;
+      --ok:#14b86a;
+      --card:#ffffffcc;
+      --line:#dce5ff;
+      --shadow:0 20px 60px rgba(64,88,174,.18);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1000px 480px at 0% -10%, #9fb5ff66, transparent 70%),
+        radial-gradient(900px 420px at 100% 0%, #caa8ff55, transparent 70%),
+        linear-gradient(180deg,#f8faff,#eef3ff 45%,#f5f8ff);
+    }
+    .noise:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.08;background-image:radial-gradient(#3f5fbf 0.7px, transparent 0.7px);background-size:4px 4px}
+    .wrap{max-width:1120px;margin:0 auto;padding:28px 20px 64px;position:relative}
+    .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+    .badge{display:inline-block;font-size:12px;padding:6px 10px;border:1px solid #cfd9ff;background:#fff;border-radius:999px;color:#3d4f86;font-weight:600}
+    .lang button{background:#fff;border:1px solid #d7e1ff;color:#3e4f84;padding:8px 12px;border-radius:9px;cursor:pointer;margin-left:6px;box-shadow:0 4px 16px rgba(95,117,194,.12)}
+    .lang button.active{background:linear-gradient(135deg,var(--brand),var(--brand2));border-color:transparent;color:#fff}
+
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}
+    .card{
+      background:var(--card);
+      backdrop-filter: blur(8px);
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      padding:22px;
+      position:relative;
+      overflow:hidden;
+    }
+    .card:after{content:"";position:absolute;right:-40px;top:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,#88a2ff33,transparent 70%)}
+
+    h1{font-size:42px;line-height:1.12;margin:0 0 10px;letter-spacing:-.02em}
+    h3{margin:0 0 8px;font-size:19px}
+    p{margin:8px 0;color:var(--muted);line-height:1.72}
+
+    .btn{display:inline-block;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;text-decoration:none;padding:11px 15px;border-radius:11px;margin-right:10px;border:none;cursor:pointer;box-shadow:0 10px 24px rgba(79,109,245,.35)}
+    .mutebtn{display:inline-block;border:1px solid #cad7ff;color:#2f3f6f;text-decoration:none;padding:10px 14px;border-radius:11px;background:#fff}
+
     .kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
-    .kpi div{background:#0f1730;border:1px solid var(--line);border-radius:12px;padding:12px}
-    .kpi b{display:block;font-size:22px}
+    .kpi div{background:linear-gradient(180deg,#fff,#f7faff);border:1px solid #d8e3ff;border-radius:13px;padding:12px;box-shadow:0 8px 18px rgba(80,105,185,.08)}
+    .kpi b{display:block;font-size:22px;color:#243d86}
+
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
-    .price{font-size:28px;color:var(--ok);font-weight:800}
+    .price{font-size:30px;color:var(--ok);font-weight:800}
+
     ul{margin:8px 0 0 18px;color:var(--muted)}
     .cases{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px}
-    .badge{display:inline-block;font-size:12px;padding:4px 8px;border:1px solid var(--line);border-radius:999px;color:#c7d2ff;margin-bottom:8px}
-    code{background:#0d1530;border:1px solid #283668;padding:2px 6px;border-radius:8px;color:#c6d5ff;word-break:break-all}
-    .foot{margin-top:18px;font-size:13px;color:#8ea1e0}
+    code{background:#eef2ff;border:1px solid #d8e2ff;padding:2px 6px;border-radius:8px;color:#304a8e;word-break:break-all}
+    .foot{margin-top:18px;font-size:13px;color:#6e7fad}
     .hidden{display:none}
+
     form{display:grid;grid-template-columns:1fr 1fr;gap:10px}
     form textarea{grid-column:1/3}
-    input,select,textarea{background:#0d1530;border:1px solid #283668;color:#e8ecff;border-radius:10px;padding:10px}
-    .note{font-size:12px;color:#9fb0ea;margin-top:8px}
+    input,select,textarea{background:#fff;border:1px solid #d7e1ff;color:#21345f;border-radius:11px;padding:11px 12px;outline:none}
+    input:focus,select:focus,textarea:focus{border-color:#9ab0ff;box-shadow:0 0 0 3px #6f8df522}
+    .note{font-size:12px;color:#6f80ab;margin-top:8px}
+
     @media (max-width:900px){.hero,.grid,.cases{grid-template-columns:1fr} form{grid-template-columns:1fr} form textarea{grid-column:1/2}}
   </style>
 </head>
-<body>
+<body class="noise">
   <div class="wrap">
     <div class="topbar">
-      <div class="badge">AI Growth Studio</div>
+      <div class="badge">AI Growth Studio · Delivery-First</div>
       <div class="lang">
         <button id="btn-zh" class="active" onclick="setLang('zh')">中文</button>
         <button id="btn-en" onclick="setLang('en')">EN</button>
@@ -48,8 +88,8 @@
     <div id="zh">
       <section class="hero">
         <div class="card">
-          <h1>把内容与自动化，变成可交付的增长结果</h1>
-          <p>我们专注中小商家与创作者的「获客内容系统」：选题、文案、发布节奏、自动化执行。</p>
+          <h1>把内容与自动化，做成可交付的增长系统</h1>
+          <p>我们专注中小商家与创作者的「获客内容系统」：选题、文案、发布节奏、自动化执行。先交付结果，再优化转化。</p>
           <a class="btn" href="https://wa.me/60187839237" target="_blank">WhatsApp 咨询</a>
           <a class="mutebtn" href="https://github.com/yangminqiu/story-to-video" target="_blank">查看GitHub交付</a>
           <div class="kpi"><div><b>24-72h</b><span>快速首轮交付</span></div><div><b>3档套餐</b><span>低门槛先跑通</span></div><div><b>可复用</b><span>模板化持续产出</span></div></div>
@@ -76,7 +116,7 @@
           <h3>Payment</h3>
           <p>Preferred: USDT (TRC20)</p>
           <p><code>TAzTRZc3ueLgpzMCF3WN9KgHCmFiGxvSRm</code></p>
-          <p>Bank transfer is also available (account details shared after confirmation).</p>
+          <p>Bank transfer is also available (details shared after confirmation).</p>
         </div>
       </section>
     </div>
@@ -88,7 +128,7 @@
     </section>
 
     <section class="cases">
-      <div class="card"><span class="badge">Demo Case</span><h3>Local lead generation content</h3><ul><li>Pain: inconsistent posting</li><li>Action: niche idea bank + templates</li><li>Outcome: stable daily output</li></ul></div>
+      <div class="card"><span class="badge">Demo Case</span><h3>Local lead-generation content</h3><ul><li>Pain: inconsistent posting</li><li>Action: niche idea bank + templates</li><li>Outcome: stable daily output</li></ul></div>
       <div class="card"><span class="badge">Demo Case</span><h3>GitHub delivery workflow</h3><ul><li>Docker one-command deployment</li><li>Automatic subtitle/SRT generation</li><li>ElevenLabs TTS integration</li></ul></div>
     </section>
 
