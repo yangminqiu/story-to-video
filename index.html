@@ -3,16 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI获客工作室 | 交付导向的AI内容与自动化</title>
+  <title>AI获客工作室 | Automation & Content</title>
   <style>
     :root{--bg:#0b1020;--card:#121a33;--line:#24305f;--text:#ecf1ff;--muted:#aeb9e8;--brand:#6d8bff;--ok:#8eea7a}
     *{box-sizing:border-box} body{margin:0;background:radial-gradient(1200px 500px at 20% -10%,#24305f55,transparent),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-    .wrap{max-width:1060px;margin:0 auto;padding:56px 20px}
+    .wrap{max-width:1060px;margin:0 auto;padding:28px 20px 56px}
+    .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+    .lang button{background:#18224a;border:1px solid var(--line);color:#d7e0ff;padding:8px 10px;border-radius:8px;cursor:pointer;margin-left:6px}
+    .lang button.active{background:var(--brand);border-color:var(--brand);color:#fff}
     .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
     .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
-    h1{font-size:42px;line-height:1.15;margin:0 0 10px} h2{margin:0 0 10px;font-size:24px} h3{margin:0 0 8px;font-size:18px}
+    h1{font-size:40px;line-height:1.15;margin:0 0 10px} h2{margin:0 0 10px;font-size:24px} h3{margin:0 0 8px;font-size:18px}
     p{margin:8px 0;color:var(--muted);line-height:1.7}
-    .btn{display:inline-block;background:var(--brand);color:#fff;text-decoration:none;padding:11px 14px;border-radius:10px;margin-right:10px}
+    .btn{display:inline-block;background:var(--brand);color:#fff;text-decoration:none;padding:11px 14px;border-radius:10px;margin-right:10px;border:none;cursor:pointer}
     .mutebtn{display:inline-block;border:1px solid var(--line);color:var(--text);text-decoration:none;padding:10px 14px;border-radius:10px}
     .kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
     .kpi div{background:#0f1730;border:1px solid var(--line);border-radius:12px;padding:12px}
@@ -22,66 +25,109 @@
     ul{margin:8px 0 0 18px;color:var(--muted)}
     .cases{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px}
     .badge{display:inline-block;font-size:12px;padding:4px 8px;border:1px solid var(--line);border-radius:999px;color:#c7d2ff;margin-bottom:8px}
-    code{background:#0d1530;border:1px solid #283668;padding:2px 6px;border-radius:8px;color:#c6d5ff}
+    code{background:#0d1530;border:1px solid #283668;padding:2px 6px;border-radius:8px;color:#c6d5ff;word-break:break-all}
     .foot{margin-top:18px;font-size:13px;color:#8ea1e0}
-    @media (max-width:900px){.hero,.grid,.cases{grid-template-columns:1fr}}
+    .hidden{display:none}
+    form{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    form textarea{grid-column:1/3}
+    input,select,textarea{background:#0d1530;border:1px solid #283668;color:#e8ecff;border-radius:10px;padding:10px}
+    .note{font-size:12px;color:#9fb0ea;margin-top:8px}
+    @media (max-width:900px){.hero,.grid,.cases{grid-template-columns:1fr} form{grid-template-columns:1fr} form textarea{grid-column:1/2}}
   </style>
 </head>
 <body>
   <div class="wrap">
-    <section class="hero">
-      <div class="card">
-        <span class="badge">AI获客工作室 · 结果导向</span>
-        <h1>把内容与自动化，变成可交付的增长结果</h1>
-        <p>我们专注中小商家与创作者的「获客内容系统」：选题、文案、发布节奏、自动化执行。先交付可见结果，再长期优化。</p>
-        <a class="btn" href="https://wa.me/60187839237" target="_blank">WhatsApp 咨询</a>
-        <a class="mutebtn" href="https://github.com/yangminqiu/story-to-video" target="_blank">查看GitHub交付</a>
-        <div class="kpi">
-          <div><b>24-72h</b><span>快速首轮交付</span></div>
-          <div><b>3档套餐</b><span>低门槛先跑通</span></div>
-          <div><b>可复用</b><span>模板化持续产出</span></div>
+    <div class="topbar">
+      <div class="badge">AI Growth Studio</div>
+      <div class="lang">
+        <button id="btn-zh" class="active" onclick="setLang('zh')">中文</button>
+        <button id="btn-en" onclick="setLang('en')">EN</button>
+      </div>
+    </div>
+
+    <div id="zh">
+      <section class="hero">
+        <div class="card">
+          <h1>把内容与自动化，变成可交付的增长结果</h1>
+          <p>我们专注中小商家与创作者的「获客内容系统」：选题、文案、发布节奏、自动化执行。</p>
+          <a class="btn" href="https://wa.me/60187839237" target="_blank">WhatsApp 咨询</a>
+          <a class="mutebtn" href="https://github.com/yangminqiu/story-to-video" target="_blank">查看GitHub交付</a>
+          <div class="kpi"><div><b>24-72h</b><span>快速首轮交付</span></div><div><b>3档套餐</b><span>低门槛先跑通</span></div><div><b>可复用</b><span>模板化持续产出</span></div></div>
         </div>
-      </div>
-      <div class="card">
-        <h3>收款方式</h3>
-        <p>优先数字货币收款（USDT TRC20）</p>
-        <p><code>TAzTRZc3ueLgpzMCF3WN9KgHCmFiGxvSRm</code></p>
-        <p>备用银行：HSBC HK<br/>Account: <code>040-446619-833</code><br/>Name: <code>Yang Mingqiu</code></p>
-      </div>
-    </section>
+        <div class="card">
+          <h3>收款方式</h3>
+          <p>优先数字货币（USDT TRC20）</p>
+          <p><code>TAzTRZc3ueLgpzMCF3WN9KgHCmFiGxvSRm</code></p>
+          <p>备用银行：HSBC HK<br/>Account: <code>040-446619-833</code><br/>Name: <code>Yang Mingqiu</code></p>
+        </div>
+      </section>
+    </div>
+
+    <div id="en" class="hidden">
+      <section class="hero">
+        <div class="card">
+          <h1>Turn AI content & automation into measurable growth</h1>
+          <p>We help small businesses and creators ship practical growth systems: content ideas, captions, publishing cadence, and lightweight automation.</p>
+          <a class="btn" href="https://wa.me/60187839237" target="_blank">WhatsApp</a>
+          <a class="mutebtn" href="https://github.com/yangminqiu/story-to-video" target="_blank">GitHub Deliverables</a>
+          <div class="kpi"><div><b>24-72h</b><span>Fast first delivery</span></div><div><b>3 tiers</b><span>Low-risk start</span></div><div><b>Reusable</b><span>Template-based output</span></div></div>
+        </div>
+        <div class="card">
+          <h3>Payment</h3>
+          <p>Preferred: USDT (TRC20)</p>
+          <p><code>TAzTRZc3ueLgpzMCF3WN9KgHCmFiGxvSRm</code></p>
+          <p>Fallback bank: HSBC HK<br/>Account: <code>040-446619-833</code><br/>Name: <code>Yang Mingqiu</code></p>
+        </div>
+      </section>
+    </div>
 
     <section class="grid">
-      <div class="card"><h3>Starter</h3><p>30个选题 + 10条文案</p><div class="price">$15</div></div>
-      <div class="card"><h3>Growth</h3><p>60个选题 + 20条文案 + 标签建议</p><div class="price">$39</div></div>
-      <div class="card"><h3>Scale</h3><p>100个选题 + 30条文案 + 30天计划</p><div class="price">$79</div></div>
+      <div class="card"><h3>Starter</h3><p>30 ideas + 10 captions</p><div class="price">$15</div></div>
+      <div class="card"><h3>Growth</h3><p>60 ideas + 20 captions + hashtags</p><div class="price">$39</div></div>
+      <div class="card"><h3>Scale</h3><p>100 ideas + 30 captions + 30-day plan</p><div class="price">$79</div></div>
     </section>
 
     <section class="cases">
-      <div class="card">
-        <span class="badge">Demo案例（示例）</span>
-        <h3>本地商家内容引流</h3>
-        <ul>
-          <li>痛点：不知道每天发什么</li>
-          <li>动作：行业选题库 + 文案模板</li>
-          <li>结果：内容产出从0到稳定日更</li>
-        </ul>
-      </div>
-      <div class="card">
-        <span class="badge">Demo案例（示例）</span>
-        <h3>GitHub 自动化交付</h3>
-        <ul>
-          <li>Docker 一键部署</li>
-          <li>自动字幕/SRT 生成</li>
-          <li>ElevenLabs TTS 接入</li>
-        </ul>
-      </div>
+      <div class="card"><span class="badge">Demo Case</span><h3>Local lead generation content</h3><ul><li>Pain: inconsistent posting</li><li>Action: niche idea bank + templates</li><li>Outcome: stable daily output</li></ul></div>
+      <div class="card"><span class="badge">Demo Case</span><h3>GitHub delivery workflow</h3><ul><li>Docker one-command deployment</li><li>Automatic subtitle/SRT generation</li><li>ElevenLabs TTS integration</li></ul></div>
     </section>
 
     <section class="card" style="margin-top:18px">
-      <h3>服务边界（真实透明）</h3>
-      <p>页面中的 Demo 案例为展示服务流程与交付形式，不代表夸大承诺。我们采用小步快跑、可验收交付的合作方式。</p>
-      <p class="foot">Contact: WhatsApp +60 18-783 9237</p>
+      <h3>Quick Order Form / 快速下单</h3>
+      <form id="leadForm">
+        <input name="name" placeholder="Name / 姓名" required />
+        <input name="contact" placeholder="WhatsApp / Email" required />
+        <select name="package" required>
+          <option value="">Select package / 选择套餐</option>
+          <option>Starter - $15</option>
+          <option>Growth - $39</option>
+          <option>Scale - $79</option>
+        </select>
+        <input name="niche" placeholder="Niche / 行业" />
+        <textarea name="goal" rows="4" placeholder="Your goal / 需求目标"></textarea>
+        <button class="btn" type="submit">Submit to WhatsApp / 提交到WhatsApp</button>
+      </form>
+      <p class="note">提交后会自动打开 WhatsApp 并带上你的需求内容。</p>
     </section>
+
+    <p class="foot">Contact: WhatsApp +60 18-783 9237</p>
   </div>
+
+  <script>
+    function setLang(lang){
+      const zh=document.getElementById('zh'), en=document.getElementById('en');
+      const bzh=document.getElementById('btn-zh'), ben=document.getElementById('btn-en');
+      if(lang==='en'){ zh.classList.add('hidden'); en.classList.remove('hidden'); ben.classList.add('active'); bzh.classList.remove('active'); }
+      else { en.classList.add('hidden'); zh.classList.remove('hidden'); bzh.classList.add('active'); ben.classList.remove('active'); }
+      localStorage.setItem('lang',lang);
+    }
+    const saved=localStorage.getItem('lang'); if(saved==='en') setLang('en');
+    document.getElementById('leadForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const f=new FormData(this);
+      const msg = `New Lead%0AName: ${encodeURIComponent(f.get('name')||'')}%0AContact: ${encodeURIComponent(f.get('contact')||'')}%0APackage: ${encodeURIComponent(f.get('package')||'')}%0ANiche: ${encodeURIComponent(f.get('niche')||'')}%0AGoal: ${encodeURIComponent(f.get('goal')||'')}`;
+      window.open(`https://wa.me/60187839237?text=${msg}`,'_blank');
+    });
+  </script>
 </body>
 </html>
